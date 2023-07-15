@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "my-terr-state-buck"
-    key    = "Infra/main"
+    key    = "Infra/Statefile"
     region = "ap-south-1"
     dynamodb_table = "Infra"
   }
@@ -24,7 +24,7 @@ module "ecr" {
   source = "./modules/ecrs"
 
   name                  = "terraform"
-  project_family        = "terra"
+  project_family        = "terras"
   environment           = "dev"
   image_tag_mutability  = "MUTABLE"
   scan_on_push          = true
