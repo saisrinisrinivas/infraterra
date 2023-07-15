@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "my-terr-state-buck"
-    key    = "Infra/Statefile"
+    key    = "Infra/main"
     region = "ap-south-1"
     dynamodb_table = "Infra"
   }
