@@ -1,0 +1,38 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+  }
+  backend "s3" {
+    bucket = "my-terr-state-buck"
+    key    = "Infra/Statefile"
+    region = "ap-south-1"
+    dynamodb_table = "Infra"
+  }
+
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = var.region_name
+}
+
+
+module "ecr" {
+  source = "./modules/ecr"
+
+  name                  = "terraform"
+  project_family        = "terra"
+  environment           = "dev"
+  image_tag_mutability  = "MUTABLE"
+  scan_on_push          = true
+  expiration_after_days = 7
+  additional_tags = {
+    Project     = "ECRDemo"
+    Owner       = "devops"
+    Purpose     = "xyxyxyx"
+    Description = "Random"
+  }
+}
