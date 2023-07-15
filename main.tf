@@ -21,7 +21,7 @@ provider "aws" {
 
 
 module "ecr" {
-  source = "./modules/ecr"
+  source = "./modules/ecrs"
 
   name                  = "terraform"
   project_family        = "terra"
